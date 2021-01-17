@@ -1,0 +1,138 @@
+.chat__header{
+	display: flex;
+	min-width: 320px;
+	justify-content: space-around;
+	align-items: center;
+}
+body{
+	font-family: 'Lato', sans-serif;
+
+}
+.chat{
+	width: 350px;
+	margin: 0 auto;
+}
+.chat__header-content{
+	display: flex;
+
+}
+.chat__header-h4{
+	font-size: 26px;
+}
+.chat__header-avatars{
+	height: 20px;
+	padding: 10px 7px 0 7px;
+}
+.chat__header-colown{
+	display: flex;
+	flex-direction: column;
+}
+.chat__header-h4{
+	margin: 0;
+	margin-top: 10px;
+	font-size: 16px;
+	white-space: nowrap;
+}
+.chat__header-icons{
+	height: 20px;
+	margin: 0 5px 0 5px;
+	
+	
+	
+
+}
+.chat__masage{
+	background: #f8fafd;
+	height: auto;
+	margin: 0 auto;
+	height: auto;
+}
+.chat__masage-content{
+	padding: 20px;
+}
+.chat__masage-avatar1{
+	height: 25px;
+}
+.chat__masage-name{
+	margin: 0;
+	padding: 5px 0 0 15px;
+}
+.chat__masage-time{
+	margin: 0;
+	padding: 5px 0 0 45px;
+	color: grey;
+}
+.chat__masage-avatars{
+	display: flex;
+	margin-top: 20px;
+}
+.chat__masage-blue_masage{
+	background: #5965DB;
+	padding: 10px;
+	max-width: 70%;
+	display: inline-block;
+    color: white;
+    border-radius: 7px;
+    margin-top: 5px;
+
+   
+}
+.chat__masage-grey{
+	display: flex;
+	background: #EAEFF4;
+	border-radius: 7px;
+	padding: 10px;
+	justify-content: flex-end;
+	margin-left: auto;
+	max-width: 70%;
+}
+.chat__masage-time2{
+	color: grey;
+	display: flex;
+	justify-content: flex-end;
+	margin: 0 20px 0 0;
+}
+.chat__input_zone{
+	display: flex;
+	margin: 0 auto;
+	padding: 20px 0 0 35px;
+	justify-content: space-between;
+}
+.chat__input_zone-userpics{
+	padding: 10px;
+}
+.chat__input_zone-input{
+	width: 100%;
+	border: 0; 
+}
+.chat__input_zone-icons{
+	display: flex;
+	align-items: center;
+}
+@media (min-width: 768px){
+	.chat{
+		width: 750px;
+	}
+	.chat__header-colown{
+		flex-direction: row;
+		flex-grow: 1;
+
+	}
+	.chat__header{
+		justify-content: space-between;
+
+	}
+	.chat__header-content{
+		flex-grow: 1;
+	}
+	.chat__header-icons{
+		display: block;
+		height: auto;
+	}
+	.chat__header-menu{
+		display: flex;
+		align-items: center;
+	}
+
+}
+
