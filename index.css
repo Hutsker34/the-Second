@@ -11,6 +11,7 @@ body{
 .chat{
 	width: 350px;
 	margin: 0 auto;
+
 }
 .chat__header-content{
 	display: flex;
@@ -36,10 +37,9 @@ body{
 .chat__header-icons{
 	height: 20px;
 	margin: 0 5px 0 5px;
-	
-	
-	
-
+}
+.site{
+	display: flex;
 }
 .chat__masage{
 	background: #f8fafd;
@@ -109,9 +109,11 @@ body{
 	display: flex;
 	align-items: center;
 }
+
 @media (min-width: 768px){
 	.chat{
 		width: 750px;
+		margin-left: 0; 
 	}
 	.chat__header-colown{
 		flex-direction: row;
@@ -133,6 +135,90 @@ body{
 		display: flex;
 		align-items: center;
 	}
+	.dialogues{
+	    width: 340px;
+	}
+	.dialogues__content{
+		padding: 10px;
+	}
+	.site{
+	display: flex;
+	flex-direction: row-reverse;
+	}
+	.dialogues__header{
+		display: flex;
+		justify-content: space-around;
+	}
+	.header__new_massage{
+		padding: 5px;
+		background: #ebedfb;
+		color: #5965db;
+		border-radius: 7px;
+		height: 16px;
+	}
+	.header__new_massage-text{
+		margin: 0;
+	}
+	.dialogues__header-h5{
+		margin: 0;
+	}
+	.dialogues__header-stick{
+		position: relative; 
+		right: 20px;
+	}
+	.dialog__avatar2{
+		position: relative;
+		right: 23px;
+		top: 15px;
+	}
+	.dialogues__chats-diolog{
+		display: flex;
+		margin-top: 22px;
+	}
+	.dialog__text-massage{
+		max-width: 190px;
+		margin: 4px 0 0 0;
+		font-size: 15px;
+	}
+	.dialog__text-header{
+		margin: 0;
+		font-size: 15px;
+	}
+	.dialog__time{
+		font-size: 12px;
+		margin: 0 6px 0 0;
+		color: grey;
+	}
+	.dialog__ball{
+		width: 15px;
+		height: 15px;
+		background: #E62D2D;
+		border-radius: 50%;
+		font-size: 9px;
+		margin: 22px 0 0 17px;
+		text-align: center;
+		color: white;
+	}
+	.dialog__ball-text{
+		padding: 1px 0 0 0;
+
+	}
+	.dialog__stick{
+		position: relative;
+		right: 20px;
+	}
+	.dialogues__chats-diolog2{
+		display: flex;
+		margin-top: 15px;
+		
+	}
+	.dialog5__avatar1{
+		margin-right: 40px;
+	}
+	.dialog__check_marks{
+		margin: 22px 0 0 17px;
+	}
+
 
 }
 
