@@ -182,7 +182,9 @@ body{
 		margin-top: 22px;
 		border-bottom: 1px solid #EAEDF3;
 		padding-bottom: 16px;
-
+	}
+	.dialogues__chats-diolog--active{
+		border-left: 4px solid #5965DB;
 	}
 	.dialog__text-massage{
 		max-width: 190px;
@@ -223,7 +225,6 @@ body{
 	}
 	.dialog2__background{
 		background: #F6F9FF;
-		width: 320px;
 		height: 100px;
 		display: flex;
 		align-items: center;
