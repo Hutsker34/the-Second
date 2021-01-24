@@ -109,6 +109,9 @@ body{
 	display: flex;
 	align-items: center;
 }
+.dialogues{
+	display: none;
+}
 
 @media (min-width: 768px){
 	.chat{
@@ -137,6 +140,7 @@ body{
 	}
 	.dialogues{
 	    width: 340px;
+	    display: block;
 	}
 	.dialogues__content{
 		padding: 10px;
@@ -220,7 +224,8 @@ body{
 		height: 100px;
 		display: flex;
 		align-items: center;
-		margin-right: 20px;
+		margin-left:  -20px;
+		padding-left: 20px;
 	}
 	.dialog5__avatar1{
 		margin-right: 40px;
