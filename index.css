@@ -140,6 +140,7 @@ body{
 	}
 	.dialogues__content{
 		padding: 10px;
+		padding-top: 0;
 	}
 	.site{
 	display: flex;
@@ -155,12 +156,13 @@ body{
 		color: #5965db;
 		border-radius: 7px;
 		height: 16px;
+		margin-top: 5px;
 	}
 	.header__new_massage-text{
 		margin: 0;
 	}
 	.dialogues__header-h5{
-		margin: 0;
+		margin: 10px 0 0 0;
 	}
 	.dialogues__header-stick{
 		position: relative; 
@@ -210,13 +212,36 @@ body{
 	.dialogues__chats-diolog2{
 		display: flex;
 		margin-top: 15px;
-		
+
+	}
+	.dialog2__background{
+		background: #F6F9FF;
+		width: 320px;
+		height: 100px;
+		display: flex;
+		align-items: center;
+		margin-right: 20px;
 	}
 	.dialog5__avatar1{
 		margin-right: 40px;
 	}
 	.dialog__check_marks{
 		margin: 22px 0 0 17px;
+	}
+	.tablet-version{
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row-reverse;
+	}
+	.dialog2__stick1{
+		position: relative;
+		right: 20px;
+		top: 4px;
+	}
+	.dialog2__stick2{
+		position: relative;
+		right: 20px;
+		bottom: 15px;
 	}
 
 
