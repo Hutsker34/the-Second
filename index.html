@@ -7,11 +7,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="site">
 		<div class="tablet-version">
-			<div class="chat">
+			<div class="wrapper">
+				<div class="search">
+					<input placeholder="Type a message. . ." class="chat__input_zone-input search__input" type="text">
+				</div>
+				<div class="chat">
 				<div class="chat__header">
 					<div class="chat__header-content">
 						<div class="chat__header-colown">
@@ -123,7 +130,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="dialog2__background">
 					<div class="dialogues__chats-diolog--active dialogues__chats-diolog">
 						<div class="dialog__avatars">
 							<img src="img/dialog2__avatar1.png">
@@ -136,7 +142,6 @@
 						<div>
 							<p class="dialog__time" >4:01 PM</p>
 						</div>
-					</div>
 					</div>
 					</div>
 					<div class="dialogues__chats-diolog">
@@ -225,7 +230,87 @@
 					</div>
 				</div>
 			</div>
+			</div>
+			<div class="desktop">
+				<div class="desktop__header">
+					<h3>PROJECT DASHBOARD</h3>
+				</div>
+				<div class="desktop__user">
+					<img class="user__avatar" src="img/user__avatar.png">
+					<div class="user__name">
+						<p class="user__name-justin">Justin Hamilton</p>
+						<p class="user__work">WEB DESIGNER</p>
+					</div>
+				</div>
+				<div class="desktop__menu">
+					<div class="desktop__menu-cont">
+						<h4 class="menu__list-h4">MENU</h4>
+						<div class="menu__list-dashboard">
+							<i class="fas fa-columns dashboard-icon"></i>
+							<p class="dashboard-text">Dashboard</p>
+						</div>
+						<div class="menu__list-users">
+							<i class="far fa-user-circle users-icon"></i>
+							<p class="users-text">All Users</p>
+						</div>
+						<div class="menu__list-documents">
+							<i class="fas fa-file-alt documents-icon"></i>
+							<p class="documents-text">Documents</p>
+						</div>
+						<div class="menu__list-conversations">
+							<i class="far fa-comments conversations-icon"></i>
+							<p class="conversations-text">Conversations</p>
+							<div class="conversations__ball">
+								<p class="conversations__ball-text">6</p>
+							</div>
+						</div>
+						<div class="menu__list-projects">
+							<i class="fas fa-briefcase projects-icon"></i>
+							<p class="projects-text">Projects</p>
+						</div>
+						<div class="menu__list-schedule">
+							<i class="far fa-calendar schedule-icon"></i>
+							<p class="schedule-text">Schedule</p>
+						</div>
+						<div class="menu__list-payments">
+							<i class="fas fa-money-check payments-icon"></i>
+							<p class="payments-text">Payments</p>
+						</div>
+						<div class="menu__support">
+							<h4 class="support__list-h4">SUPPORT</h4>
+							<div class="support__list-help">
+								<i class="far fa-question-circle help-icon"></i>
+								<p class="help-text">Need Help?</p>
+							</div>
+							<div class="support__list-us">
+								<i class="far fa-envelope us-icon"></i>
+								<p class="us-text">Contact Us</p>
+					    	</div>
+						</div>
+						<div class="menu__settings">
+							<h4 class="settings__list-h4">SETTINGS</h4>
+							<div class="settings__list-account">
+								<i class="fas fa-cog account-icon"></i>
+								<p class="account-text">Account</p>
+							</div>
+							<div class="settings__list-dark">
+								<i class="far fa-moon dark-icon"></i>
+								<p class="dark-text">Darc Mode</p>
+					    	</div>
+					    	<div class="settings__list-exit">
+								<i class="fas fa-sign-out-alt exit-icon"></i>
+								<p class="exit-text">Log Out</p>
+					    	</div>
+						</div>
+					</div>
+				</div>
+				<div class="desktop__futer">
+					<h5 class="desktop__futer-h5">Project Dashboard Inc. 2020</h5>
+					<p class="desktop__futer-text">Created with love for the community of designers and project managers.</p>
+				</div>
+			</div>
 		</div>
 	</div>
+	<script src="script.JS" type="text/javascript"></script>
 </body>
 </html>

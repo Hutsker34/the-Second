@@ -3,14 +3,19 @@
 	min-width: 320px;
 	justify-content: space-around;
 	align-items: center;
+	border: 1px solid #EAEDF3;
+	padding: 0 0 5px 25px;
+
 }
 body{
 	font-family: 'Lato', sans-serif;
+	margin: 0;
 
 }
 .chat{
 	width: 350px;
 	margin: 0 auto;
+	order: 2;
 
 }
 .chat__header-content{
@@ -90,7 +95,8 @@ body{
 	color: grey;
 	display: flex;
 	justify-content: flex-end;
-	margin: 0 20px 0 0;
+	margin: 15px 20px 0 0;
+
 }
 .chat__input_zone{
 	display: flex;
@@ -111,6 +117,17 @@ body{
 }
 .dialogues{
 	display: none;
+
+}
+.desktop{
+	display: none;
+}
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.search{
+	flex-basis: 100%;
 }
 
 @media (min-width: 768px){
@@ -125,6 +142,7 @@ body{
 	}
 	.chat__header{
 		justify-content: space-between;
+
 
 	}
 	.chat__header-content{
@@ -152,7 +170,8 @@ body{
 	}
 	.dialogues__header{
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-around;]
+		border: 1px solid #EAEDF3;
 	}
 	.header__new_massage{
 		padding: 5px;
@@ -168,10 +187,6 @@ body{
 	.dialogues__header-h5{
 		margin: 10px 0 0 0;
 	}
-	.dialogues__header-stick{
-		position: relative; 
-		right: 20px;
-	}
 	.dialog__avatar2{
 		position: relative;
 		right: 23px;
@@ -179,12 +194,15 @@ body{
 	}
 	.dialogues__chats-diolog{
 		display: flex;
-		margin-top: 22px;
+		padding-top: 27px;
 		border-bottom: 1px solid #EAEDF3;
 		padding-bottom: 16px;
+		border-left: 4px solid transparent;
+		padding-left: 15px;
 	}
 	.dialogues__chats-diolog--active{
 		border-left: 4px solid #5965DB;
+		background: #F6F9FF;
 	}
 	.dialog__text-massage{
 		max-width: 190px;
@@ -241,6 +259,7 @@ body{
 		margin: 0 auto;
 		display: flex;
 		flex-direction: row-reverse;
+		margin-left: 0px;
 	}
 	.dialog2__stick1{
 		position: relative;
@@ -252,7 +271,233 @@ body{
 		right: 20px;
 		bottom: 15px;
 	}
+	.chat__header-people{
+		color: pink;
+	}
+	.search{
+		border-bottom: 1px solid #E3E6EE;
+		padding-left: 15px;
+    	width: 806px;
+
+	}
+	.search__input{
+		padding: 25px 0 25px 25px;
+		background-image:url(img/search__icon.png); 
+    	background-repeat: no-repeat; 
+    	background-position: 2px 50%;
 
 
+	}
+	.search__input:active,.search__input:focus{
+       outline: none;
+	}
+
+}
+@media (min-width: 1440px){
+	.desktop{
+		background: #1E2933;
+		color: white;
+		font-family: 'Roboto', sans-serif;
+		display: block;
+	}
+	
+	.desktop__header{
+		padding: 5px 20px 0 20px;
+		border-bottom: 1px solid #323E4A;
+		font-size: 14px;
+
+	}
+	.desktop__user{
+		display: flex;
+		border-bottom: 1px solid #323E4A;
+	}
+	.user__avatar{
+        padding: 25px 15px 25px 25px;
+	}
+	.user__name-justin{
+		margin: 0;
+		font-size: 16px;
+	}
+	.user__work{
+		margin: 0 0 0 2px;
+		color: #9BA4B0;
+		font-size: 12px;
+	}
+	.user__name{
+		margin-top: 25px;
+	}
+	.menu__list-dashboard{
+		display: flex;
+	}
+	.dashboard-icon{
+		padding: 10px;
+	}
+	.dashboard-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.menu__list-h4{
+		font-size: 12px;
+		color: #9BA4B0;
+		padding-left: 10px;
+	}
+	.menu__list-users{
+		display: flex;
+	}
+	.users-icon{
+		padding: 10px;
+	}
+	.users-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.menu__list-documents{
+		display: flex;
+	}
+	.desktop__menu-cont{
+		padding: 10px;
+	}
+	.documents-icon{
+		padding: 10px;
+	}
+	.documents-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.menu__list-conversations{
+		display: flex;
+	}
+	.conversations-icon{
+		padding: 10px;
+	}
+	.conversations-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.menu__list-conversations{
+		background: #5965DB;
+		border-radius: 5px;
+	}
+	.conversations__ball{
+		width: 15px;
+		height: 15px;
+		background: white;
+		border-radius: 50%;
+		font-size: 9px;
+		text-align: center;
+		color: black;
+		margin: 10px 0 0 32px;
+	}
+	.conversations__ball-text{
+		margin-top: 2px;
+	}
+	.menu__list-projects{
+		display: flex;
+	}
+	.projects-icon{
+		padding: 10px;
+	}
+	.projects-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.menu__list-schedule{
+		display: flex;
+	}
+	.schedule-icon{
+		padding: 10px;
+	}
+	.schedule-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.menu__list-payments{
+		display: flex;
+	}
+	.payments-icon{
+		padding: 10px;
+	}
+	.payments-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.support__list-h4{
+		font-size: 12px;
+		color: #9BA4B0;
+		padding-left: 10px;
+	}
+	.support__list-help{
+		display: flex;
+	}
+	.help-icon{
+		padding: 10px;
+	}
+	.help-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.support__list-us{
+		display: flex;
+	}
+	.us-icon{
+		padding: 10px;
+	}
+	.us-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.settings__list-h4{
+		font-size: 12px;
+		color: #9BA4B0;
+		padding-left: 10px;
+	}
+	.settings__list-account{
+		display: flex;
+	}
+	.account-icon{
+		padding: 10px;
+	}
+	.account-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.settings__list-dark{
+		display: flex;
+	}
+	.dark-icon{
+		padding: 10px;
+	}
+	.dark-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.settings__list-exit{
+		display: flex;
+	}
+	.exit-icon{
+		padding: 10px;
+	}
+	.exit-text{
+		margin: 10px 0 0 0;
+		font-size: 14px;
+	}
+	.desktop__futer-h5{
+		font-size: 12px;
+		margin: 0;
+	}
+	.desktop__futer-text{
+		max-width: 201px;
+		font-size: 12px;
+		color: #9BA4B0;
+	}
+	.desktop__futer{
+		padding: 10px 0 0 10px;
+		border-top: 2px solid #323E4A;
+		margin-top: 50px;
+
+	}
+
+
+	
 }
 
