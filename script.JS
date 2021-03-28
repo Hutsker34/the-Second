@@ -54,8 +54,8 @@ function make(tag, mus, object = {}) {
 }
 
 
-function massage( text, time) {
-    const element = make('div', ['chat__masage-grey-masege1'])
+function massage( text,time=getСurrentTime()) {
+    const element = make('div', ['message__holder'])
     const masageTime = make('p', ['chat__masage-time2'])
     masageTime.textContent = time
     const greyMasage = make('div', ['chat__masage-grey'])
@@ -68,10 +68,28 @@ function massage( text, time) {
 const input = document.getElementById("input");
 input.addEventListener("keydown", function(event) {
   if (event.code === 'Enter') {
-    const element = massage( input.value, '9:50 AM');
+    const element = massage( input.value, getСurrentTime());
     chat.append(element)
    input.value='';
   }
 });
 
-
+function getСurrentTime(){
+  const now = new Date();
+  const hours=now.getHours();
+  const minute = now.getMinutes();
+  if (hours>12) {
+    return `${hours-12}:${minute} PM`
+  } else {
+    return `${hours}:${minute} AM`
+  }
+}
+/*
+alert(typeof new Date())
+const obj={
+  run: function (){
+    alert(123)
+  }
+}
+obj.run()
+*/
