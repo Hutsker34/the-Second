@@ -1,3 +1,6 @@
+.chat__masage-grey-message1{
+	text-align: right;
+}
 .chat__header{
 	display: flex;
 	min-width: 320px;
@@ -83,14 +86,14 @@ body{
    
 }
 .chat__masage-grey{
-	display: flex;
+	display: inline-block;
 	background: #EAEFF4;
 	border-radius: 7px;
 	padding: 10px;
-	justify-content: flex-end;
 	margin-left: auto;
 	max-width: 70%;
 }
+
 .chat__masage-time2{
 	color: grey;
 	display: flex;
@@ -386,7 +389,7 @@ body{
 		font-size: 9px;
 		text-align: center;
 		color: black;
-		margin: 10px 0 0 32px;
+		margin: 10px 15px 0 32px;
 	}
 	.conversations__ball-text{
 		margin-top: 2px;
@@ -493,7 +496,7 @@ body{
 	.desktop__futer{
 		padding: 10px 0 0 10px;
 		border-top: 2px solid #323E4A;
-		margin-top: 50px;
+		margin-top: 80px;
 
 	}
 
