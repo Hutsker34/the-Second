@@ -65,18 +65,24 @@ inputMy.addEventListener("keydown", function (event) {
     const elementMy = massageMy(input.value, getСurrentTime());
     chatMy.append(elementMy)
     inputMy.value = '';
+    function first(){
     if (elementMy !== null) {
       const res = massage(arrayRandElement(name), arrayRandElement(img), arrayRandElement(phrases), getСurrentTime())
       chat.append(res)
     } else {
 
     }
+  }
+    function second(){
     if (elementMy !== null) {
       const res = massage(arrayRandElement(name),arrayRandElement(img) ,arrayRandElement(phrases) ,getСurrentTime())
       chat.append(res)
     } else {
 
     }
+  }
+  setTimeout(first,2000)
+  setTimeout(second, 4000)
   }
 });
 const phrases = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?', 'ты выйдешь за меня?']
