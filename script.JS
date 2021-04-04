@@ -58,7 +58,7 @@ function massageMy(text, time = getСurrentTime()) {
   elementMy.append(greyMasageMy)
   return elementMy
 }
-
+ 
 const inputMy = document.getElementById("input");
 inputMy.addEventListener("keydown", function (event) {
   if (event.code === 'Enter') {
@@ -82,10 +82,10 @@ inputMy.addEventListener("keydown", function (event) {
     }
   }
   setTimeout(first,2000)
-  setTimeout(second, 4000)
+  setTimeout(second, 5000)
   }
 });
-const phrases = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?', 'ты выйдешь за меня?']
+const phrases = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?',]
 
 const img = ['img/dialog2__avatar1.png', 'img/dialog1__avatar2.png', 'img/dialog2__avatar2.png', 'img/dialog3__avatar1.png', 'img/dialog3__avatar2.png', 'img/dialog4__avatar1.png']
 
