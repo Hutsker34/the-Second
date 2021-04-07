@@ -1,6 +1,6 @@
 
 const chat = document.querySelector('#masage-content')
-const inputMy = document.getElementById("input");
+const inputMy = document.querySelector("input");
 const chatMy = document.querySelector('#masage-content')
 
 const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?',]
@@ -28,18 +28,18 @@ function makeMessage(text, isMe, time = getСurrentTime()) {
   const timeMasage = isMe ? 'chat__masage-time2' : 'chat__masage-time'
   const words = isMe ? 'chat__masage-grey' : 'chat__masage-blue_masage'
   const messageElement = make('div', [holder])
-  const masageTime = make('p', [timeMasage])
-  masageTime.textContent = time
-  const blueMasage = make('div', [words])
-  blueMasage.textContent = text
+  const masageTimeElement = make('p', [timeMasage])
+  masageTimeElement.textContent = time
+  const blueMasageElement = make('div', [words])
+  blueMasageElement.textContent = text
   if (!isMe) {
     const avatarsHolderElement = make('div', ['chat__masage-avatars'])
-    const masageAvatar1 = make('img', ['chat__masage-avatar1'], { src: arrayRandElement(IMAGES) })
-    const masageName = make('h5', ['chat__masage-name'])
-    masageName.textContent = arrayRandElement(NAMES)
-    avatarsHolderElement.append(masageAvatar1, masageName, masageTime)
-    messageElement.append(avatarsHolderElement, blueMasage)
-  } else { messageElement.append(masageTime, blueMasage) }
+    const masageAvatar1Element = make('img', ['chat__masage-avatar1'], { src: arrayRandElement(IMAGES) })
+    const masageNameElement = make('h5', ['chat__masage-name'])
+    masageNameElement.textContent = arrayRandElement(NAMES)
+    avatarsHolderElement.append(masageAvatar1Element, masageNameElement, masageTimeElement)
+    messageElement.append(avatarsHolderElement, blueMasageElement)
+  } else { messageElement.append(masageTimeElement, blueMasageElement) }
   return messageElement
 }
 
@@ -60,15 +60,15 @@ input.addEventListener("keydown", function (event) {
 });
 
 function arrayRandElement(phrases) {
-  var rand = Math.floor(Math.random() * phrases.length);
+  const rand = Math.floor(Math.random() * phrases.length);
   return phrases[rand];
 }
 function arrayRandElement(img) {
-  var rand = Math.floor(Math.random() * img.length);
+  const rand = Math.floor(Math.random() * img.length);
   return img[rand];
 }
 function arrayRandElement(name) {
-  var rand = Math.floor(Math.random() * name.length);
+  const rand = Math.floor(Math.random() * name.length);
   return name[rand];
 }
 
