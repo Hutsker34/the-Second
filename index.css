@@ -59,23 +59,23 @@ body{
 .chat__masage-content{
 	padding: 20px;
 }
-.chat__masage-avatar1{
+.blue__message-img{
 	height: 25px;
 }
-.chat__masage-name{
+.blue__message-name{
 	margin: 0;
 	padding: 5px 0 0 15px;
 }
-.chat__masage-time{
+.blue__message-time{
 	margin: 0;
 	padding: 5px 0 0 45px;
 	color: grey;
 }
-.chat__masage-avatars{
+.blue__message-content{
 	display: flex;
 	margin-top: 20px;
 }
-.chat__masage-blue_masage{
+.blue__message-text{
 	background: #5965DB;
 	padding: 10px;
 	max-width: 70%;
@@ -86,7 +86,7 @@ body{
 
    
 }
-.chat__masage-grey{
+.grey__message-text{
 	display: inline-block;
 	background: #EAEFF4;
 	border-radius: 7px;
@@ -96,7 +96,7 @@ body{
 	align-self: flex-end;
 }
 
-.chat__masage-time2{
+.grey__message-time{
 	color: grey;
 	display: flex;
 	justify-content: flex-end;

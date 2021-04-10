@@ -24,18 +24,18 @@ function make(tag, mus, object = {}) {
 
 
 function makeMessage(text, isMe, time = getСurrentTime()) {
-  const holder = isMe ? 'message__holder' : 'chat__masage-blue-masege1'
-  const timeMasage = isMe ? 'chat__masage-time2' : 'chat__masage-time'
-  const words = isMe ? 'chat__masage-grey' : 'chat__masage-blue_masage'
+  const holder = isMe ? 'message__holder' : 'blue__message'
+  const timeMasage = isMe ? 'grey__message-time' : 'blue__message-time'
+  const words = isMe ? 'grey__message-text' : 'blue__message-text'
   const messageElement = make('div', [holder])
   const masageTimeElement = make('p', [timeMasage])
   masageTimeElement.textContent = time
   const blueMasageElement = make('div', [words])
   blueMasageElement.textContent = text
   if (!isMe) {
-    const avatarsHolderElement = make('div', ['chat__masage-avatars'])
-    const masageAvatar1Element = make('img', ['chat__masage-avatar1'], { src: arrayRandElement(IMAGES) })
-    const masageNameElement = make('h5', ['chat__masage-name'])
+    const avatarsHolderElement = make('div', ['blue__message-content'])
+    const masageAvatar1Element = make('img', ['blue__message-img'], { src: arrayRandElement(IMAGES) })
+    const masageNameElement = make('h5', ['blue__message-name'])
     masageNameElement.textContent = arrayRandElement(NAMES)
     avatarsHolderElement.append(masageAvatar1Element, masageNameElement, masageTimeElement)
     messageElement.append(avatarsHolderElement, blueMasageElement)
