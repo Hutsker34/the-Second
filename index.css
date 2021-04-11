@@ -20,6 +20,8 @@ body{
 	width: 350px;
 	margin: 0 auto;
 	order: 2;
+	display: flex;
+	flex-direction: column;
 
 }
 .chat__header-content{
@@ -54,7 +56,8 @@ body{
 	background: #f8fafd;
 	height: auto;
 	margin: 0 auto;
-	height: auto;
+	flex-grow: 1;
+	width: 100%;
 }
 .chat__masage-content{
 	padding: 20px;
@@ -108,6 +111,8 @@ body{
 	margin: 0 auto;
 	padding: 20px 0 0 35px;
 	justify-content: space-between;
+	width: 100%;
+	box-sizing: border-box;
 }
 .chat__input_zone-userpics{
 	padding: 10px;
