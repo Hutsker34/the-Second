@@ -6,21 +6,7 @@ const chatMy = document.querySelector('#masage-content')
 const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?',]
 const IMAGES = ['img/dialog2__avatar1.png', 'img/dialog1__avatar2.png', 'img/dialog2__avatar2.png', 'img/dialog3__avatar1.png', 'img/dialog3__avatar2.png', 'img/dialog4__avatar1.png']
 const NAMES = ['victor Roberts', 'Terry Griffin', 'Angela Lopez', 'Piter Williams', 'Olivia Smith', 'jessica Harris']
-const history = [
-  {
-    avatar: 'img/dialog2__avatar1.png',
-    text: 'We are all excited to have you, we loved the work that you showed us during your interview and you fit well with everyone on our team and company. If you have any questions feel free to ask and someone on the team will help you out.',
-    time: '11:08 AM',
-    name: 'Victor'
-  },
-  {
-    avatar: 'img/dialog2__avatar1.png',
-    text: 'We are all excited to have you, we loved the work that you showed us during your interview and you fit well with everyone on our team and company. If you have any questions feel free to ask and someone on the team will help you out.',
-    time: '11:08 AM',
-    name: 'Victor'
-  }
 
-]
 
 
 
@@ -36,8 +22,8 @@ function make(tag, mus, object = {}) {
 
 }
 
-
-function makeMessage(text, isMe, time = getСurrentTime(),name=arrayRandElement(NAMES),avatar=arrayRandElement(IMAGES)) {
+function renderMessage({text, time, name, avatar}) {
+  const isMe = name == ''
   const holder = isMe ? 'message__holder' : 'blue__message'
   const timeMasage = isMe ? 'grey__message-time' : 'blue__message-time'
   const words = isMe ? 'grey__message-text' : 'blue__message-text'
@@ -59,17 +45,42 @@ function makeMessage(text, isMe, time = getСurrentTime(),name=arrayRandElement(
 
 
 
+function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
+  name=isMe?'': arrayRandElement(NAMES)
+  avatar=isMe?'':arrayRandElement(IMAGES)
+  const historyPush = {
+    avatar,
+    text,
+    time: getСurrentTime(),
+    name
+  }
+  // Получение данных
+  const storageData = JSON.parse(localStorage.getItem('history')) || [];
+
+  // Обновление данных
+  localStorage.setItem('history', JSON.stringify([...storageData, historyPush]));
+
+  
+
+  return renderMessage({text,  time, name, avatar})
+
+
+}
+
+
+
 input.addEventListener("keydown", function (event) {
   if (event.code !== 'Enter') {
     return
   }
-  chat.append(makeMessage(input.value, getСurrentTime()))
+  
+  chat.append(makeMessage({text:input.value}))
   input.value = '';
   setTimeout(function () {
-    chat.append(makeMessage(arrayRandElement(PHRASES), false))
+    chat.append(makeMessage({text:arrayRandElement(PHRASES)},false))
   }, 2000)
   setTimeout(function () {
-    chat.append(makeMessage(arrayRandElement(PHRASES), false))
+    chat.append(makeMessage({text:arrayRandElement(PHRASES)},false))
   }, 5000)
 });
 
@@ -101,15 +112,17 @@ function getСurrentTime() {
   }
 }
 
-function renderHistory(){
-  for(let i = 0;i<history.length;i++){
-    const {text,time,avatar,name}=history[i]
-    chat.append(makeMessage(text,false,time,name,avatar))
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem('history')) || [];
+  for (let i = 0; i < history.length; i++) {
+    const { text, time, avatar, name } = history[i]
+    chat.append(renderMessage({text, time, name, avatar}))
+
   }
 
 }
 
-renderHistory()
 
+renderHistory()
 
 
