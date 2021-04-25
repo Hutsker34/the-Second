@@ -89,6 +89,10 @@ body{
 
    
 }
+.input__red::-webkit-input-placeholder {
+		color: red;
+}
+
 .grey__message-text{
 	display: inline-block;
 	background: #EAEFF4;

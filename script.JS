@@ -70,19 +70,30 @@ function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
 
 
 input.addEventListener("keydown", function (event) {
+  console.log(this)
   if (event.code !== 'Enter') {
     return
   }
-  
-  chat.append(makeMessage({text:input.value}))
-  input.value = '';
-  setTimeout(function () {
+  if (this.value==='') {
+    this.classList.add('input__red');
+    this.placeholder='введите хотя бы 1 символ!'
+    
+    
+  } else {
+    chat.append(makeMessage({text:this.value}))
+    this.value = '';
+    this.placeholder = 'type a message ...';
+    this.classList.remove('input__red');
+    setTimeout(function () {
     chat.append(makeMessage({text:arrayRandElement(PHRASES)},false))
   }, 2000)
   setTimeout(function () {
     chat.append(makeMessage({text:arrayRandElement(PHRASES)},false))
   }, 5000)
-});
+
+}
+  
+})
 
 function arrayRandElement(phrases) {
   const rand = Math.floor(Math.random() * phrases.length);
@@ -125,4 +136,21 @@ function renderHistory() {
 
 renderHistory()
 
+const array = document.querySelector('.dialogues__chats')
+let selectedTd;
 
+array.onclick = function(event){
+  let target = event.target;
+  console.log(event.target,'1')
+  if (!target.classList.contains('dialogues__chats')) return;
+  highlight(target);
+}
+function highlight(td) {
+  console.log(td,'2')
+  if (selectedTd) { // убрать существующую подсветку, если есть
+    selectedTd.classList.remove('dialogues__chats-diolog--active');
+  }
+  selectedTd = td;
+  selectedTd.classList.add('dialogues__chats-diolog--active'); // подсветить новый td
+}
+ 
