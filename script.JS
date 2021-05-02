@@ -6,8 +6,21 @@ const chatMy = document.querySelector('#masage-content')
 const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?',]
 const IMAGES = ['img/dialog2__avatar1.png', 'img/dialog1__avatar2.png', 'img/dialog2__avatar2.png', 'img/dialog3__avatar1.png', 'img/dialog3__avatar2.png', 'img/dialog4__avatar1.png']
 const NAMES = ['victor Roberts', 'Terry Griffin', 'Angela Lopez', 'Piter Williams', 'Olivia Smith', 'jessica Harris']
+let historyID = 0
 
+let history  = JSON.parse(localStorage.getItem('history')) || {};
+  
+function addToHistory(id,message){
+  if(id in history){
+    console.log(history[id])
+    history[id].push(message)
+  }else{
+    history[id]=[message]
+  }
 
+// Обновление данных
+localStorage.setItem('history', JSON.stringify(history));
+}
 
 
 
@@ -54,11 +67,7 @@ function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
     time: getСurrentTime(),
     name
   }
-  // Получение данных
-  const storageData = JSON.parse(localStorage.getItem('history')) || [];
-
-  // Обновление данных
-  localStorage.setItem('history', JSON.stringify([...storageData, historyPush]));
+  addToHistory(historyID,historyPush)
 
   
 
@@ -70,7 +79,7 @@ function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
 
 
 input.addEventListener("keydown", function (event) {
-  console.log(this)
+  
   if (event.code !== 'Enter') {
     return
   }
@@ -124,9 +133,10 @@ function getСurrentTime() {
 }
 
 function renderHistory() {
-  const history = JSON.parse(localStorage.getItem('history')) || [];
-  for (let i = 0; i < history.length; i++) {
-    const { text, time, avatar, name } = history[i]
+  chat.innerHTML=''
+  let messages = history[historyID] || []
+  for (let i = 0; i < messages.length; i++) {
+    const { text, time, avatar, name } = messages[i]
     chat.append(renderMessage({text, time, name, avatar}))
 
   }
@@ -136,21 +146,25 @@ function renderHistory() {
 
 renderHistory()
 
-const array = document.querySelector('.dialogues__chats')
-let selectedTd;
+const activeDialog= document.querySelector('.dialogues__chats')
+let dialogues = document.querySelector('.dialogues__chats-diolog');
 
-array.onclick = function(event){
-  let target = event.target;
-  console.log(event.target,'1')
-  if (!target.classList.contains('dialogues__chats')) return;
-  highlight(target);
-}
-function highlight(td) {
-  console.log(td,'2')
-  if (selectedTd) { // убрать существующую подсветку, если есть
-    selectedTd.classList.remove('dialogues__chats-diolog--active');
+
+activeDialog.addEventListener('click',  function(event){
+  const target = event.target.closest('.dialogues__chats-diolog');
+  if (target) {
+    highlight(target);
+    historyID = dialogues.getAttribute('id')
+    renderHistory()
   }
-  selectedTd = td;
-  selectedTd.classList.add('dialogues__chats-diolog--active'); // подсветить новый td
 }
- 
+)
+function highlight(element) {
+  if (dialogues) { // убрать существующую подсветку, если есть
+    dialogues.classList.remove('dialogues__chats-diolog--active');
+  }
+  dialogues = element;
+  dialogues.classList.add('dialogues__chats-diolog--active'); // подсветить новый td
+}
+
+
