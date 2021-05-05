@@ -255,6 +255,10 @@ body{
 		margin-top: 15px;
 
 	}
+	.dialogues__chats-diolog:hover{
+		border-left: 4px solid #5965DB;
+		background: #F6F9FF;
+	}
 	.dialog2__background{
 		background: #F6F9FF;
 		height: 100px;
@@ -389,8 +393,7 @@ body{
 		font-size: 14px;
 	}
 	.menu__list-conversations{
-		background: #5965DB;
-		border-radius: 5px;
+		
 	}
 	.conversations__ball{
 		width: 15px;
@@ -509,6 +512,10 @@ body{
 		border-top: 2px solid #323E4A;
 		margin-top: 80px;
 
+	}
+	.capabilities:hover{
+		background: #5965DB;
+		border-radius: 5px;
 	}
 
 
