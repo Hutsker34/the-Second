@@ -35,24 +35,25 @@ function make(tag, mus, object = {}) {
 
 }
 
-function renderMessage({text, time, name, avatar}) {
+function renderMessage({text, time, name, avatar,id}) {
   const isMe = name == ''
-  const holder = isMe ? 'message__holder' : 'blue__message'
-  const timeMasage = isMe ? 'grey__message-time' : 'blue__message-time'
-  const words = isMe ? 'grey__message-text' : 'blue__message-text'
-  const messageElement = make('div', [holder])
+  const holder = isMe ? 'my__message' : 'friend__message'
+  const timeMasage = isMe ? 'grey__message-time' : 'friend__message-time'
+  const words = isMe ? 'grey__message-text' : 'friend__message-text'
+  const messageElement = make('div', [holder,"del__message"],{id})
   const masageTimeElement = make('p', [timeMasage])
   masageTimeElement.textContent = time
   const blueMasageElement = make('div', [words])
   blueMasageElement.textContent = text
   if (!isMe) {
-    const avatarsHolderElement = make('div', ['blue__message-content'])
-    const masageAvatar1Element = make('img', ['blue__message-img'], { src: avatar })
-    const masageNameElement = make('h5', ['blue__message-name'])
+    const avatarsHolderElement = make('div', ['friend__message-content'])
+    const masageAvatar1Element = make('img', ['friend__message-img'], { src: avatar })
+    const masageNameElement = make('h5', ['friend__message-name'])
     masageNameElement.textContent = name
     avatarsHolderElement.append(masageAvatar1Element, masageNameElement, masageTimeElement)
     messageElement.append(avatarsHolderElement, blueMasageElement)
   } else { messageElement.append(masageTimeElement, blueMasageElement) }
+
   return messageElement
 }
 
@@ -61,17 +62,19 @@ function renderMessage({text, time, name, avatar}) {
 function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
   name=isMe?'': arrayRandElement(NAMES)
   avatar=isMe?'':arrayRandElement(IMAGES)
+  const id = uuidv4()
   const historyPush = {
     avatar,
     text,
     time: getСurrentTime(),
-    name
+    name,
+    id
   }
   addToHistory(historyID,historyPush)
 
   
 
-  return renderMessage({text,  time, name, avatar})
+  return renderMessage({text,  time, name, avatar,id})
 
 
 }
@@ -136,8 +139,8 @@ function renderHistory() {
   chat.innerHTML=''
   let messages = history[historyID] || []
   for (let i = 0; i < messages.length; i++) {
-    const { text, time, avatar, name } = messages[i]
-    chat.append(renderMessage({text, time, name, avatar}))
+    const { text, time, avatar, name , id} = messages[i]
+    chat.append(renderMessage({text, time, name, avatar,id}))
 
   }
 
@@ -166,5 +169,26 @@ function highlight(element) {
   dialogues = element;
   dialogues.classList.add('dialogues__chats-diolog--active'); // подсветить новый td
 }
+const del = document.querySelector('.chat__masage-content');
+
+del.addEventListener('dblclick', function (e) {
+  const target = e.target.closest('.del__message')
+  const conf = target && confirm('вы точно хотите удалить сообщение')
+  if (conf) {
+    target.remove()
+    console.log(historyID)
+    history[historyID]=history[historyID].filter(item => item.id !=target.id)
+    console.log(history)
+    localStorage.setItem('history', JSON.stringify(history));
+  }
+});
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+console.log(uuidv4());
 
 

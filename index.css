@@ -7,7 +7,7 @@
 	padding: 0 0 5px 25px;
 
 }
-.message__holder {
+.my__message {
     display: flex;
     flex-direction: column;
 }
@@ -62,23 +62,23 @@ body{
 .chat__masage-content{
 	padding: 20px;
 }
-.blue__message-img{
+.friend__message-img{
 	height: 25px;
 }
-.blue__message-name{
+.friend__message-name{
 	margin: 0;
 	padding: 5px 0 0 15px;
 }
-.blue__message-time{
+.friend__message-time{
 	margin: 0;
 	padding: 5px 0 0 45px;
 	color: grey;
 }
-.blue__message-content{
+.friend__message-content{
 	display: flex;
 	margin-top: 20px;
 }
-.blue__message-text{
+.friend__message-text{
 	background: #5965DB;
 	padding: 10px;
 	max-width: 70%;
