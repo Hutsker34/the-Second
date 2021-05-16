@@ -7,19 +7,20 @@ const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'х�
 const IMAGES = ['img/dialog2__avatar1.png', 'img/dialog1__avatar2.png', 'img/dialog2__avatar2.png', 'img/dialog3__avatar1.png', 'img/dialog3__avatar2.png', 'img/dialog4__avatar1.png']
 const NAMES = ['victor Roberts', 'Terry Griffin', 'Angela Lopez', 'Piter Williams', 'Olivia Smith', 'jessica Harris']
 let historyID = 0
+let isEditeng = false
+let thisMessage = null
+let history = JSON.parse(localStorage.getItem('history')) || {};
 
-let history  = JSON.parse(localStorage.getItem('history')) || {};
-  
-function addToHistory(id,message){
-  if(id in history){
+function addToHistory(id, message) {
+  if (id in history) {
     console.log(history[id])
     history[id].push(message)
-  }else{
-    history[id]=[message]
+  } else {
+    history[id] = [message]
   }
 
-// Обновление данных
-localStorage.setItem('history', JSON.stringify(history));
+  // Обновление данных
+  localStorage.setItem('history', JSON.stringify(history));
 }
 
 
@@ -35,15 +36,15 @@ function make(tag, mus, object = {}) {
 
 }
 
-function renderMessage({text, time, name, avatar,id}) {
+function renderMessage({ text, time, name, avatar, id }) {
   const isMe = name == ''
   const holder = isMe ? 'my__message' : 'friend__message'
   const timeMasage = isMe ? 'grey__message-time' : 'friend__message-time'
   const words = isMe ? 'grey__message-text' : 'friend__message-text'
-  const messageElement = make('div', [holder,"del__message"],{id})
+  const messageElement = make('div', [holder, "del__message"], { id })
   const masageTimeElement = make('p', [timeMasage])
   masageTimeElement.textContent = time
-  const blueMasageElement = make('div', [words])
+  const blueMasageElement = make('div', [words, 'redactClass'])
   blueMasageElement.textContent = text
   if (!isMe) {
     const avatarsHolderElement = make('div', ['friend__message-content'])
@@ -59,9 +60,9 @@ function renderMessage({text, time, name, avatar,id}) {
 
 
 
-function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
-  name=isMe?'': arrayRandElement(NAMES)
-  avatar=isMe?'':arrayRandElement(IMAGES)
+function makeMessage({ text, time = getСurrentTime(), name, avatar }, isMe = true) {
+  name = isMe ? '' : arrayRandElement(NAMES)
+  avatar = isMe ? '' : arrayRandElement(IMAGES)
   const id = uuidv4()
   const historyPush = {
     avatar,
@@ -70,11 +71,11 @@ function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
     name,
     id
   }
-  addToHistory(historyID,historyPush)
+  addToHistory(historyID, historyPush)
 
-  
 
-  return renderMessage({text,  time, name, avatar,id})
+
+  return renderMessage({ text, time, name, avatar, id })
 
 
 }
@@ -82,29 +83,46 @@ function makeMessage({text, time = getСurrentTime(), name, avatar},isMe=true) {
 
 
 input.addEventListener("keydown", function (event) {
-  
+
   if (event.code !== 'Enter') {
+
     return
   }
-  if (this.value==='') {
+  if (this.value === '') {
     this.classList.add('input__red');
-    this.placeholder='введите хотя бы 1 символ!'
-    
-    
-  } else {
-    chat.append(makeMessage({text:this.value}))
-    this.value = '';
-    this.placeholder = 'type a message ...';
-    this.classList.remove('input__red');
-    setTimeout(function () {
-    chat.append(makeMessage({text:arrayRandElement(PHRASES)},false))
-  }, 2000)
-  setTimeout(function () {
-    chat.append(makeMessage({text:arrayRandElement(PHRASES)},false))
-  }, 5000)
+    this.placeholder = 'введите хотя бы 1 символ!'
 
-}
-  
+
+  } else {
+    if (!isEditeng) {
+      chat.append(makeMessage({ text: this.value }))
+      this.value = '';
+      this.placeholder = 'type a message ...';
+      this.classList.remove('input__red');
+      setTimeout(function () {
+        chat.append(makeMessage({ text: arrayRandElement(PHRASES) }, false))
+      }, 2000)
+      setTimeout(function () {
+        chat.append(makeMessage({ text: arrayRandElement(PHRASES) }, false))
+      }, 5000)
+
+    }else{
+      const  redactId =  thisMessage.closest('.del__message').id
+      thisMessage.innerText=this.value
+      isEditeng = false
+      thisMessage = null
+      
+      
+      history[historyID] = history[historyID].map((item) => {if(item.id == redactId){
+        return{...item, text: this.value}
+      }else{
+        return item
+      }
+    })
+      localStorage.setItem('history', JSON.stringify(history));
+      this.value = ''
+    }
+  }
 })
 
 function arrayRandElement(phrases) {
@@ -136,11 +154,11 @@ function getСurrentTime() {
 }
 
 function renderHistory() {
-  chat.innerHTML=''
+  chat.innerHTML = ''
   let messages = history[historyID] || []
   for (let i = 0; i < messages.length; i++) {
-    const { text, time, avatar, name , id} = messages[i]
-    chat.append(renderMessage({text, time, name, avatar,id}))
+    const { text, time, avatar, name, id } = messages[i]
+    chat.append(renderMessage({ text, time, name, avatar, id }))
 
   }
 
@@ -149,11 +167,11 @@ function renderHistory() {
 
 renderHistory()
 
-const activeDialog= document.querySelector('.dialogues__chats')
+const activeDialog = document.querySelector('.dialogues__chats')
 let dialogues = document.querySelector('.dialogues__chats-diolog');
 
 
-activeDialog.addEventListener('click',  function(event){
+activeDialog.addEventListener('click', function (event) {
   const target = event.target.closest('.dialogues__chats-diolog');
   if (target) {
     highlight(target);
@@ -177,13 +195,13 @@ del.addEventListener('dblclick', function (e) {
   if (conf) {
     target.remove()
     console.log(historyID)
-    history[historyID]=history[historyID].filter(item => item.id !=target.id)
+    history[historyID] = history[historyID].filter(item => item.id != target.id)
     console.log(history)
     localStorage.setItem('history', JSON.stringify(history));
   }
 });
 function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
@@ -192,3 +210,15 @@ function uuidv4() {
 console.log(uuidv4());
 
 
+
+del.addEventListener('contextmenu', function (e) {
+  const target = e.target.closest('.del__message')
+  const conf = target && confirm('вы хотите изменить сообщение')
+  if (conf) {
+    isEditeng = true
+    const redactText = target.querySelector('.redactClass')
+    thisMessage = redactText
+    input.value = redactText.innerText
+
+  }
+});
