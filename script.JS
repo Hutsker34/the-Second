@@ -60,7 +60,7 @@ function renderMessage({ text, time, name, avatar, id }) {
 
 
 
-function makeMessage({ text, time = getСurrentTime(), name, avatar }, isMe = true) {
+function makeMessage({ text, time = getСurrentTime(), name, avatar }, isMe = true , IDhistory = historyID) {
   name = isMe ? '' : arrayRandElement(NAMES)
   avatar = isMe ? '' : arrayRandElement(IMAGES)
   const id = uuidv4()
@@ -71,16 +71,23 @@ function makeMessage({ text, time = getСurrentTime(), name, avatar }, isMe = tr
     name,
     id
   }
-  addToHistory(historyID, historyPush)
+  addToHistory(IDhistory, historyPush)
 
-
-
-  return renderMessage({ text, time, name, avatar, id })
-
+  if (historyID == IDhistory) {
+    return renderMessage({ text, time, name, avatar, id })
+  }
+  
 
 }
 
-
+function helper(numberOfMessages){
+  for(let i=0;i<numberOfMessages;i++){
+    setTimeout(function (idHistory) {
+      let result = makeMessage({ text: arrayRandElement(PHRASES) }, false,idHistory)
+      result && chat.append(result)
+    }, 2000 , historyID)
+  }
+}
 
 input.addEventListener("keydown", function (event) {
 
@@ -99,26 +106,23 @@ input.addEventListener("keydown", function (event) {
       this.value = '';
       this.placeholder = 'type a message ...';
       this.classList.remove('input__red');
-      setTimeout(function () {
-        chat.append(makeMessage({ text: arrayRandElement(PHRASES) }, false))
-      }, 2000)
-      setTimeout(function () {
-        chat.append(makeMessage({ text: arrayRandElement(PHRASES) }, false))
-      }, 5000)
+     
+      helper(2)
 
-    }else{
-      const  redactId =  thisMessage.closest('.del__message').id
-      thisMessage.innerText=this.value
+    } else {
+      const redactId = thisMessage.closest('.del__message').id
+      thisMessage.innerText = this.value
       isEditeng = false
       thisMessage = null
-      
-      
-      history[historyID] = history[historyID].map((item) => {if(item.id == redactId){
-        return{...item, text: this.value}
-      }else{
-        return item
-      }
-    })
+
+
+      history[historyID] = history[historyID].map((item) => {
+        if (item.id == redactId) {
+          return { ...item, text: this.value }
+        } else {
+          return item
+        }
+      })
       localStorage.setItem('history', JSON.stringify(history));
       this.value = ''
     }
@@ -128,14 +132,6 @@ input.addEventListener("keydown", function (event) {
 function arrayRandElement(phrases) {
   const rand = Math.floor(Math.random() * phrases.length);
   return phrases[rand];
-}
-function arrayRandElement(img) {
-  const rand = Math.floor(Math.random() * img.length);
-  return img[rand];
-}
-function arrayRandElement(name) {
-  const rand = Math.floor(Math.random() * name.length);
-  return name[rand];
 }
 
 
@@ -189,17 +185,7 @@ function highlight(element) {
 }
 const del = document.querySelector('.chat__masage-content');
 
-del.addEventListener('dblclick', function (e) {
-  const target = e.target.closest('.del__message')
-  const conf = target && confirm('вы точно хотите удалить сообщение')
-  if (conf) {
-    target.remove()
-    console.log(historyID)
-    history[historyID] = history[historyID].filter(item => item.id != target.id)
-    console.log(history)
-    localStorage.setItem('history', JSON.stringify(history));
-  }
-});
+
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -207,18 +193,31 @@ function uuidv4() {
   });
 }
 
-console.log(uuidv4());
+
+
+  del.addEventListener('contextmenu', function (e) {
+    const target = e.target.closest('.del__message')
+    const conf = target && confirm('вы хотите изменить сообщение')
+    if (conf) {
+      isEditeng = true
+      const redactText = target.querySelector('.redactClass')
+      thisMessage = redactText
+      input.value = redactText.innerText
+
+    }
+  });
 
 
 
-del.addEventListener('contextmenu', function (e) {
-  const target = e.target.closest('.del__message')
-  const conf = target && confirm('вы хотите изменить сообщение')
-  if (conf) {
-    isEditeng = true
-    const redactText = target.querySelector('.redactClass')
-    thisMessage = redactText
-    input.value = redactText.innerText
 
-  }
-});
+  del.addEventListener('dblclick', function (e) {
+    const target = e.target.closest('.del__message')
+    const conf = target && confirm('вы точно хотите удалить сообщение')
+    if (conf) {
+      target.remove()
+      history[historyID] = history[historyID].filter(item => item.id != target.id)
+      localStorage.setItem('history', JSON.stringify(history));
+    }
+  });
+
+
