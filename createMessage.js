@@ -5,24 +5,22 @@ import {
   arrayRandElement
 } from './helpers.js'
 
-import HistorySettings from './historySettings.js'
-
 import {
   addToHistory
 } from './history.js'
 import historySettings from './historySettings.js'
 
-const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?',]
+const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?']
 const IMAGES = ['img/dialog2__avatar1.png', 'img/dialog1__avatar2.png', 'img/dialog2__avatar2.png', 'img/dialog3__avatar1.png', 'img/dialog3__avatar2.png', 'img/dialog4__avatar1.png']
 const NAMES = ['victor Roberts', 'Terry Griffin', 'Angela Lopez', 'Piter Williams', 'Olivia Smith', 'jessica Harris']
 const chat = document.querySelector('#masage-content')
 
-function renderMessage({ text, time, name, avatar, id }) {
-  const isMe = name == ''
+function renderMessage ({ text, time, name, avatar, id }) {
+  const isMe = name === ''
   const holder = isMe ? 'my__message' : 'friend__message'
   const timeMasage = isMe ? 'grey__message-time' : 'friend__message-time'
   const words = isMe ? 'grey__message-text' : 'friend__message-text'
-  const messageElement = make('div', [holder, "del__message"], { id })
+  const messageElement = make('div', [holder, 'del__message'], { id })
   const masageTimeElement = make('p', [timeMasage])
   masageTimeElement.textContent = time
   const blueMasageElement = make('div', [words, 'redactClass'])
@@ -39,7 +37,7 @@ function renderMessage({ text, time, name, avatar, id }) {
   return messageElement
 }
 
-function makeMessage({ text, time = getСurrentTime(), name, avatar }, isMe = true, IDhistory = HistorySettings.historyID) {
+function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = true, IDhistory = historySettings.historyID) {
   name = isMe ? '' : arrayRandElement(NAMES)
   avatar = isMe ? '' : arrayRandElement(IMAGES)
   const id = uuidv4()
@@ -52,22 +50,19 @@ function makeMessage({ text, time = getСurrentTime(), name, avatar }, isMe = tr
   }
   addToHistory(IDhistory, historyPush)
 
-  if (HistorySettings.historyID == IDhistory) {
+  if (historySettings.historyID === IDhistory) {
     return renderMessage({ text, time, name, avatar, id })
   }
-
 }
 
-function helper(numberOfMessages) {
+function helper (numberOfMessages) {
   for (let i = 0; i < numberOfMessages; i++) {
     setTimeout(function (idHistory) {
-      let result = makeMessage({ text: arrayRandElement(PHRASES) }, false, idHistory)
+      const result = makeMessage({ text: arrayRandElement(PHRASES) }, false, idHistory)
       result && chat.append(result)
     }, 2000, historySettings.historyID)
   }
 }
-
-
 
 export {
   renderMessage,
