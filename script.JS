@@ -5,17 +5,19 @@ import {
   renderHistory
 } from './history.js'
 import {
-  oneSimbol
-} from './oneSimbol.js'
-import {
   deleteMessage
 } from './deleteMessage.js'
-import {
-  redactMessage
-} from './redactMessage.js'
+import './redactMessage.js'
+
+fetch('http://localhost:8000/user', {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ name: 'alex' })
+})
 
 renderHistory()
-oneSimbol()
 dialogesChoice()
 deleteMessage()
-redactMessage()
