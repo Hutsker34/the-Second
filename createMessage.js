@@ -49,7 +49,14 @@ function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = t
     id
   }
   addToHistory(IDhistory, historyPush)
-
+  fetch('http://localhost:8000/user', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(historyPush)
+  })
   if (historySettings.historyID === IDhistory) {
     return renderMessage({ text, time, name, avatar, id })
   }
