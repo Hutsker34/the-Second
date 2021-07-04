@@ -8,7 +8,18 @@ function deleteMessage () {
     if (conf) {
       target.remove()
       historySettings.history[historySettings.historyID] = historySettings.history[historySettings.historyID].filter(item => item.id !== target.id)
-      localStorage.setItem('history', JSON.stringify(historySettings.history))
+
+      fetch('http://localhost:8000/user', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          history: historySettings.history,
+          id: historySettings.historyID
+        })
+      })
     }
   })
 }

@@ -10,14 +10,12 @@ export function addToHistory (id, message) {
   } else {
     history[id] = [message]
   }
-
-  // Обновление данных
-  localStorage.setItem('history', JSON.stringify(history))
 }
 
 export function renderHistory () {
   chat.innerHTML = ''
-  const messages = historySettings.history[historySettings.historyID] || []
+  const messages = historySettings.history[historySettings.id] || []
+
   for (let i = 0; i < messages.length; i++) {
     const { text, time, avatar, name, id } = messages[i]
     chat.append(renderMessage({ text, time, name, avatar, id }))
