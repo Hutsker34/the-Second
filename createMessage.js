@@ -4,10 +4,6 @@ import {
   make,
   arrayRandElement
 } from './helpers.js'
-
-import {
-  addToHistory
-} from './history.js'
 import historySettings from './historySettings.js'
 
 const PHRASES = ['привет!', 'как дела?', 'чем занят?', 'хорошая погода сегодня!', 'какие планы на вечер?']
@@ -48,14 +44,16 @@ function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = t
     name,
     id
   }
-  addToHistory(IDhistory, historyPush)
-  fetch('http://localhost:8000/user', {
+  fetch('http://localhost:8000/create-mess', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(historyPush)
+    body: JSON.stringify({
+      id: IDhistory,
+      history: historyPush
+    })
   })
   if (historySettings.historyID === IDhistory) {
     return renderMessage({ text, time, name, avatar, id })

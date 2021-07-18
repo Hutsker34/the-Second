@@ -18,10 +18,23 @@ function dialogesChoice () {
     if (target) {
       highlight(target)
       historySettings.historyID = dialogues.getAttribute('id')
-      renderHistory()
+      fetch('http://localhost:8000/get-dialogue', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: historySettings.historyID
+        })
+      })
+        .then(res => res.json())
+        .then(messeges => {
+          historySettings.history[historySettings.historyID] = messeges
+          renderHistory()
+        })
     }
-  }
-  )
+  })
 }
 export {
   dialogesChoice

@@ -7,6 +7,7 @@ function deleteMessage () {
     const conf = target && confirm('вы точно хотите удалить сообщение')
     if (conf) {
       target.remove()
+      console.log(historySettings.historyID, 'delete')
       historySettings.history[historySettings.historyID] = historySettings.history[historySettings.historyID].filter(item => item.id !== target.id)
 
       fetch('http://localhost:8000/user', {
