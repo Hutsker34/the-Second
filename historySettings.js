@@ -21,4 +21,4 @@ class HistorySettings {
   }
 }
 
-export default new HistorySettings(0, JSON.parse(localStorage.getItem('history')) || {})
+export default new HistorySettings(0, {})

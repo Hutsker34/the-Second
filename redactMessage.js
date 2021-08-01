@@ -18,7 +18,6 @@ del.addEventListener('contextmenu', function (e) {
     thisMessage = redactText
     input.value = redactText.innerText
     historySettings.history[historySettings.historyID] = historySettings.history[historySettings.historyID].filter(item => item.id !== target.id)
-    localStorage.setItem('history', JSON.stringify(historySettings.history))
   }
 })
 
@@ -38,17 +37,29 @@ input.addEventListener('keydown', function (event) {
       helper(2)
     } else {
       const redactId = thisMessage.closest('.del__message').id
-      thisMessage.innerText = this.value
       isEditeng = false
       thisMessage = null
-      historySettings.history[historySettings.historyID] = historySettings.history[historySettings.historyID].map((item) => {
-        if (item.id === redactId) {
-          return { ...item, text: this.value }
-        } else {
-          return item
-        }
+
+      fetch('http://localhost:8000/redact-mess', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          history: historySettings.historyID,
+          id: redactId,
+          newText: input.value
+        })
       })
-      localStorage.setItem('history', JSON.stringify(historySettings.history))
+        .then(res => res.json())
+        .then(res => {
+          if (res.success) {
+            thisMessage.innerText = input.value
+          } else {
+            alert('невозможно изменить сообщение!')
+          }
+        })
       this.value = ''
     }
   }
