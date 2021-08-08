@@ -9,6 +9,8 @@ import {
 } from './deleteMessage.js'
 import './redactMessage.js'
 import historySettings from './historySettings.js'
+const del = document.querySelector('.chat__masage-content')
+const activeDialog = document.querySelector('.dialogues__chats')
 
 fetch('http://localhost:8000/history', {
 
@@ -25,5 +27,5 @@ fetch('http://localhost:8000/history', {
   renderHistory()
 })
 
-dialogesChoice()
-deleteMessage()
+del.addEventListener('dblclick', deleteMessage)
+activeDialog.addEventListener('click', dialogesChoice)

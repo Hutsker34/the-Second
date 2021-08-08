@@ -60,7 +60,7 @@ function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = t
   }
 }
 
-function helper (numberOfMessages) {
+function sendFriendMessage (numberOfMessages) {
   for (let i = 0; i < numberOfMessages; i++) {
     setTimeout(function (idHistory) {
       const result = makeMessage({ text: arrayRandElement(PHRASES) }, false, idHistory)
@@ -72,6 +72,6 @@ function helper (numberOfMessages) {
 export {
   renderMessage,
   makeMessage,
-  helper
+  sendFriendMessage
 
 }
