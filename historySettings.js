@@ -21,4 +21,4 @@ class HistorySettings {
   }
 }
 
-export default new HistorySettings(0, {})
+export default new HistorySettings('614fbb110e6c86bc59473b47', {})

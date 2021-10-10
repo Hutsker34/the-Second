@@ -44,7 +44,7 @@ function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = t
     name,
     id
   }
-  fetch('http://localhost:8000/create-mess', {
+  fetch('http://localhost:8000/api/message', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
