@@ -44,10 +44,7 @@ function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = t
     name,
     id: IDhistory
   }
-  console.log('test', {
-    id: IDhistory,
-    history: historyPush
-  })
+
   fetch('http://localhost:8000/api/message', {
     method: 'POST',
     headers: {

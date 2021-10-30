@@ -17,19 +17,16 @@ function dialogesChoice (event) {
   if (target) {
     highlight(target)
     historySettings.historyID = dialogues.getAttribute('id')
-    fetch('http://localhost:8000/get-dialogue', {
-      method: 'POST',
+
+    fetch('http://localhost:8000/api/dialog', {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: historySettings.historyID
-      })
+      }
     })
       .then(res => res.json())
-      .then(messeges => {
-        historySettings.history[historySettings.historyID] = messeges
+      .then(({ data }) => {
+        historySettings.history[historySettings.historyID] = data[historySettings.historyID]
         renderHistory()
       })
   }

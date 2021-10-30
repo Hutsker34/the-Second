@@ -184,7 +184,7 @@ body{
 	}
 	.dialogues__header{
 		display: flex;
-		justify-content: space-around;]
+		justify-content: space-around;
 		border: 1px solid #EAEDF3;
 	}
 	.header__new_massage{
