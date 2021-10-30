@@ -1,9 +1,9 @@
 # the-Second
  история-addToHistory,
  renderHistory
- 
+ <br>
  создание сообщений-renderMessage,makeMessage,helper
-
+<br>
  редактирование-
  helpers-make,arrayRandElement,uuidv4,getСurrentTime
  ## список доделок 
