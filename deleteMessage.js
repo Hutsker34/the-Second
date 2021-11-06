@@ -10,20 +10,16 @@ function deleteMessage (e) {
     return
   }
 
-  fetch('http://localhost:8000/api/message', {
-    method: 'POST',
+  fetch(`http://localhost:8000/api/message/${target.id}`, {
+    method: 'DELETE',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      history: historySettings.historyID,
-      id: target.id
-    })
+    }
   })
     .then(res => res.json())
     .then(res => {
-      if (res.success) {
+      if (res.status === 'success') {
         target.remove()
       } else {
         alert('невозможно удалить сообщение!')

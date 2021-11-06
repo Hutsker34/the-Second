@@ -16,8 +16,8 @@ export function renderHistory () {
   chat.innerHTML = ''
   const messages = historySettings.history[historySettings.historyID] || []
   for (let i = 0; i < messages.length; i++) {
-    const { text, time, avatar, name, id } = messages[i]
+    const { text, time, avatar, name, _id } = messages[i]
 
-    chat.append(renderMessage({ text, time, name, avatar, id }))
+    chat.append(renderMessage({ text, time, name, avatar, id: _id }))
   }
 }

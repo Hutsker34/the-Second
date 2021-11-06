@@ -1,6 +1,5 @@
 import {
   getСurrentTime,
-  uuidv4,
   make,
   arrayRandElement
 } from './helpers.js'
@@ -36,7 +35,6 @@ function renderMessage ({ text, time, name, avatar, id }) {
 function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = true, IDhistory = historySettings.historyID) {
   name = isMe ? '' : arrayRandElement(NAMES)
   avatar = isMe ? '' : arrayRandElement(IMAGES)
-  const id = uuidv4()
   const historyPush = {
     avatar,
     text,
@@ -55,17 +53,20 @@ function makeMessage ({ text, time = getСurrentTime(), name, avatar }, isMe = t
       id: IDhistory,
       history: historyPush
     })
+  }).then(function (loc) {
+    return loc.json()
+  }).then(function (loc) {
+    const id = loc.data._id
+    if (historySettings.historyID === IDhistory) {
+      chat.append(renderMessage({ text, time, name, avatar, id }))
+    }
   })
-  if (historySettings.historyID === IDhistory) {
-    return renderMessage({ text, time, name, avatar, id })
-  }
 }
 
 function sendFriendMessage (numberOfMessages) {
   for (let i = 0; i < numberOfMessages; i++) {
     setTimeout(function (idHistory) {
-      const result = makeMessage({ text: arrayRandElement(PHRASES) }, false, idHistory)
-      result && chat.append(result)
+      makeMessage({ text: arrayRandElement(PHRASES) }, false, idHistory)
     }, 2000, historySettings.historyID)
   }
 }

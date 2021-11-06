@@ -5,7 +5,6 @@ import {
 } from './createMessage.js'
 const del = document.querySelector('.chat__masage-content')
 const input = document.querySelector('#input')
-const chat = document.querySelector('#masage-content')
 let isEditeng = false
 let thisMessage = null
 
@@ -31,7 +30,7 @@ function inputHandler (event) {
     return
   }
   if (!isEditeng) {
-    chat.append(makeMessage({ text: this.value }))
+    makeMessage({ text: this.value })
     this.value = ''
     this.placeholder = 'type a message ...'
     this.classList.remove('input__red')
