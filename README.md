@@ -1,13 +1,13 @@
 # the-Second
 <dl>
  <dt>история</dt>
- <dd>addToHistory,renderHistory</dd>
+ <dd><code>addToHistory,renderHistory</code></dd>
 
  <dt>создание сообщений</dt>
- <dd>renderMessage,makeMessage,helper</dd>
+ <dd><code>renderMessage,makeMessage,helper</code></dd>
 
  <dt>редактирование</dt>
- <dd>helpers-make,arrayRandElement,uuidv4,getСurrentTime</dd>
+ <dd><code>helpers-make,arrayRandElement,uuidv4,getСurrentTime</code></dd>
 </dl>
 
  ## список доделок 
