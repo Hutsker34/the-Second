@@ -1,4 +1,7 @@
 import historySettings from './historySettings.js'
+import {
+  renderHistory
+} from './history.js'
 
 function deleteMessage (e) {
   const target = e.target.closest('.del__message')
@@ -7,7 +10,7 @@ function deleteMessage (e) {
     return
   }
 
-  fetch('http://localhost:8000/delete-mess', {
+  fetch('http://localhost:8000/api/message', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -29,17 +32,16 @@ function deleteMessage (e) {
 
   historySettings.history[historySettings.historyID] = historySettings.history[historySettings.historyID].filter(item => item.id !== target.id)
 
-  fetch('http://localhost:8000/get-dialogue', {
-    method: 'POST',
+  fetch('http://localhost:8000/api/dialog', {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      history: historySettings.history,
-      id: historySettings.historyID
+    }
+  }).then(res => res.json())
+    .then(({ data }) => {
+      historySettings.history[historySettings.historyID] = data[historySettings.historyID]
+      renderHistory()
     })
-  })
 }
 
 export {
