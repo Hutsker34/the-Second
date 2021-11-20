@@ -43,8 +43,8 @@ function inputHandler (event) {
 
   const redactId = thisMessage.closest('.del__message').id
 
-  fetch('http://localhost:8000/redact-mess', {
-    method: 'POST',
+  fetch(`http://localhost:8000/api/message/${redactId}`, {
+    method: 'PATCH',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
@@ -54,9 +54,9 @@ function inputHandler (event) {
       id: redactId,
       newText: input.value
     })
-  })
-    .then(res => res.json())
+  }).then(res => res.json())
     .then(res => {
+      console.log(res)
       if (res.success) {
         thisMessage.innerText = input.value
       } else {
