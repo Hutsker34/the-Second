@@ -2,7 +2,8 @@ import {
   dialogesChoice
 } from './highlight.js'
 import {
-  all
+  createDialog,
+  getDialogs
 } from './createDialog.js'
 import {
   renderHistory
@@ -29,7 +30,7 @@ fetch('http://localhost:8000/api/dialog', {
   historySettings.history = loc.data
   renderHistory()
 })
-
+getDialogs()
 del.addEventListener('dblclick', deleteMessage)
 activeDialog.addEventListener('click', dialogesChoice)
-plus.addEventListener('click', all)
+plus.addEventListener('click', createDialog)
