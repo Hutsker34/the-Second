@@ -2,6 +2,9 @@ import {
   dialogesChoice
 } from './highlight.js'
 import {
+  all
+} from './createDialog.js'
+import {
   renderHistory
 } from './history.js'
 import {
@@ -11,6 +14,7 @@ import './redactMessage.js'
 import historySettings from './historySettings.js'
 const del = document.querySelector('.chat__masage-content')
 const activeDialog = document.querySelector('.dialogues__chats')
+const plus = document.querySelector('.chat__header-plus')
 
 fetch('http://localhost:8000/api/dialog', {
 
@@ -28,3 +32,4 @@ fetch('http://localhost:8000/api/dialog', {
 
 del.addEventListener('dblclick', deleteMessage)
 activeDialog.addEventListener('click', dialogesChoice)
+plus.addEventListener('click', all)
